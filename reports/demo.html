@@ -272,9 +272,9 @@
     <div class="meta-card"><div class="label">Generated</div><div class="value" id="gen-date"></div></div>
   </div>
   <div class="stat-grid">
-    <div class="stat-card"><div class="num" style="color:var(--green)">15</div><div class="desc">Total Scenarios</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--green)">25</div><div class="desc">Total Scenarios</div></div>
     <div class="stat-card"><div class="num" style="color:var(--accent)">100%</div><div class="desc">Success Rate</div></div>
-    <div class="stat-card"><div class="num" style="color:var(--orange)">5</div><div class="desc">HITL Interrupts</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--orange)">6</div><div class="desc">HITL Interrupts</div></div>
     <div class="stat-card"><div class="num" style="color:var(--red)">6</div><div class="desc">Total Retries</div></div>
   </div>
 </section>
@@ -531,7 +531,7 @@
   <div class="sec-sub">Aggregated results from the 15-scenario test suite</div>
   <div class="perf-grid">
     <div class="perf-card"><div class="big" style="color:var(--green)">100%</div><div class="sm">Success Rate</div></div>
-    <div class="perf-card"><div class="big" style="color:var(--accent)">5</div><div class="sm">HITL Interrupts</div></div>
+    <div class="perf-card"><div class="big" style="color:var(--accent)">6</div><div class="sm">HITL Interrupts</div></div>
     <div class="perf-card"><div class="big" style="color:var(--red)">6</div><div class="sm">Total Retries</div></div>
   </div>
   <div class="bar-chart">
@@ -559,21 +559,31 @@
 <script>
 // ─── Data ───────────────────────────────────────────────────────────────────
 const SCENARIOS = [
-  {id:"S01_simple",query:"How do I reset my password?",route:"simple",ok:true,retries:0,ints:0,lat:21238,approval:false},
-  {id:"S02_tool",query:"Please lookup order status for order 12345",route:"tool",ok:true,retries:0,ints:0,lat:1724,approval:false},
-  {id:"S03_missing",query:"Can you fix it?",route:"missing_info",ok:true,retries:0,ints:0,lat:927,approval:false},
-  {id:"S04_risky",query:"Refund this customer and send confirmation email",route:"risky",ok:true,retries:0,ints:1,lat:2522,approval:true},
-  {id:"S05_error",query:"Timeout failure while processing request",route:"error",ok:true,retries:2,ints:0,lat:1879,approval:false},
-  {id:"S06_delete",query:"Delete customer account after support verification",route:"risky",ok:true,retries:0,ints:1,lat:2107,approval:true},
-  {id:"S07_dead_letter",query:"System failure cannot recover after multiple attempts",route:"error",ok:true,retries:1,ints:0,lat:645,approval:false,dead:true},
-  {id:"S08_complex_tool",query:"What is the shipping status for order #98765?",route:"tool",ok:true,retries:0,ints:0,lat:1706,approval:false},
-  {id:"S09_complex_risky",query:"Process full refund of $499.99 and cancel subscription",route:"risky",ok:true,retries:0,ints:1,lat:2587,approval:true},
-  {id:"S10_complex_missing",query:"Fix the billing problem",route:"risky",ok:true,retries:0,ints:1,lat:2028,approval:true},
-  {id:"S11_complex_retry",query:"Connection timeout: failed to fetch account data",route:"error",ok:true,retries:2,ints:0,lat:3336,approval:false},
-  {id:"S12_policy_simple",query:"What is your return policy for electronics?",route:"simple",ok:true,retries:0,ints:0,lat:3118,approval:false},
-  {id:"S13_escalation_risky",query:"Permanently delete user account ID 84721 due to fraud",route:"risky",ok:true,retries:0,ints:1,lat:2187,approval:true},
-  {id:"S14_missing_order",query:"Where is my package?",route:"tool",ok:true,retries:0,ints:0,lat:2263,approval:false},
-  {id:"S15_dead_letter_hard",query:"Critical database sync error: payment gateway unreachable",route:"error",ok:true,retries:1,ints:0,lat:956,approval:false,dead:true},
+  {id:"S01_simple",query:"How do I reset my password?",route:"simple",ok:true,retries:0,ints:0,lat:43846,approval:false},
+  {id:"S02_tool",query:"Please lookup order status for order 12345",route:"tool",ok:true,retries:0,ints:0,lat:1791,approval:false},
+  {id:"S03_missing",query:"Can you fix it?",route:"missing_info",ok:true,retries:0,ints:0,lat:742,approval:false},
+  {id:"S04_risky",query:"Refund this customer and send confirmation email",route:"risky",ok:true,retries:0,ints:1,lat:4595,approval:true},
+  {id:"S05_error",query:"Timeout failure while processing request",route:"error",ok:true,retries:2,ints:0,lat:2175,approval:false},
+  {id:"S06_delete",query:"Delete customer account after support verification",route:"risky",ok:true,retries:0,ints:1,lat:1876,approval:true},
+  {id:"S07_dead_letter",query:"System failure cannot recover after multiple attempts",route:"error",ok:true,retries:1,ints:0,lat:655,approval:false,dead:true},
+  {id:"S08_complex_tool",query:"What is the shipping status for order #98765?",route:"tool",ok:true,retries:0,ints:0,lat:1918,approval:false},
+  {id:"S09_complex_risky",query:"Process full refund of $499.99 and cancel subscription",route:"risky",ok:true,retries:0,ints:1,lat:2172,approval:true},
+  {id:"S10_complex_missing",query:"Fix the billing problem",route:"risky",ok:true,retries:0,ints:1,lat:2206,approval:true},
+  {id:"S11_complex_retry",query:"Connection timeout: failed to fetch account data",route:"error",ok:true,retries:2,ints:0,lat:3302,approval:false},
+  {id:"S12_policy_simple",query:"What is your return policy for electronics?",route:"simple",ok:true,retries:0,ints:0,lat:2407,approval:false},
+  {id:"S13_escalation_risky",query:"Permanently delete user account ID 84721 due to fraud",route:"risky",ok:true,retries:0,ints:1,lat:1851,approval:true},
+  {id:"S14_missing_order",query:"Where is my package?",route:"tool",ok:true,retries:0,ints:0,lat:2030,approval:false},
+  {id:"S15_dead_letter_hard",query:"Critical database sync error: payment gateway unreachable",route:"error",ok:true,retries:1,ints:0,lat:690,approval:false,dead:true},
+  {id:"S16_gq_refund_days",query:"Theo chính sách hoàn tiền hiện hành, khách hàng có tối đa bao nhiêu ngày làm việc để gửi yêu cầu hoàn tiền?",route:"simple",ok:true,retries:0,ints:0,lat:2233,approval:false},
+  {id:"S17_gq_refund_exclusion",query:"Đâu là loại sản phẩm bị loại khỏi điều kiện hoàn tiền?",route:"simple",ok:true,retries:0,ints:0,lat:2366,approval:false},
+  {id:"S18_gq_refund_processing",query:"Finance Team xử lý yêu cầu hoàn tiền trong bao lâu?",route:"risky",ok:true,retries:0,ints:1,lat:1779,approval:true},
+  {id:"S19_gq_sla_p1_response",query:"SLA phản hồi ban đầu cho ticket P1 là bao lâu?",route:"simple",ok:true,retries:0,ints:0,lat:2158,approval:false},
+  {id:"S20_gq_sla_p1_resolution",query:"SLA resolution cho ticket P1 là bao nhiêu giờ?",route:"simple",ok:true,retries:0,ints:0,lat:1578,approval:false},
+  {id:"S21_gq_sla_escalate",query:"Nếu không có phản hồi với ticket P1 sau bao lâu thì hệ thống auto escalate?",route:"simple",ok:true,retries:0,ints:0,lat:1687,approval:false},
+  {id:"S22_gq_account_lock",query:"Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai liên tiếp?",route:"simple",ok:true,retries:0,ints:0,lat:2172,approval:false},
+  {id:"S23_gq_vpn_devices",query:"VPN cho phép kết nối tối đa bao nhiêu thiết bị cùng lúc?",route:"simple",ok:true,retries:0,ints:0,lat:2421,approval:false},
+  {id:"S24_gq_hr_leave",query:"Nhân viên dưới 3 năm kinh nghiệm được bao nhiêu ngày phép năm theo chính sách HR 2026?",route:"simple",ok:true,retries:0,ints:0,lat:1810,approval:false},
+  {id:"S25_gq_admin_access",query:"Level 4 Admin Access yêu cầu phê duyệt bởi ai?",route:"missing_info",ok:true,retries:0,ints:0,lat:727,approval:false},
 ];
 
 // Execution paths per route type

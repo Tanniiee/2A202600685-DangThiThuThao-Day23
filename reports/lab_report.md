@@ -1,6 +1,6 @@
 # Day 08 Lab Report — LangGraph Agentic Orchestration
 
-> Generated: 2026-06-29 12:11
+> Generated: 2026-06-29 14:51
 
 ---
 
@@ -11,7 +11,7 @@
 | Name | Đặng Thị Thu Thảo |
 | Student ID | 2A202600685 |
 | Repo | 2A202600685-DangThiThuThao-Day23 |
-| Date | 2026-06-29 12:11 |
+| Date | 2026-06-29 14:51 |
 
 ---
 
@@ -116,32 +116,42 @@ audit event]
 
 | Metric | Value |
 |---|---|
-| Total scenarios      | **15** |
+| Total scenarios      | **25** |
 | Success rate         | **100%** |
-| Avg nodes visited    | 6.7 |
+| Avg nodes visited    | 6.1 |
 | Total retries        | 6 |
-| Total interrupts     | 5 |
+| Total interrupts     | 6 |
 | Crash-resume success | Yes |
 
 ### Per-scenario
 
 | Scenario | Expected | Actual | OK | Retries | Interrupts | Latency | Errors |
 |---|---|---|:---:|---:|---:|---:|---|
-| `S01_simple` | `simple` | `simple` | ✅ | 0 | 0 | 55128 ms | - |
-| `S02_tool` | `tool` | `tool` | ✅ | 0 | 0 | 6460 ms | - |
-| `S03_missing` | `missing_info` | `missing_info` | ✅ | 0 | 0 | 3090 ms | - |
-| `S04_risky` | `risky` | `risky` | ✅ | 0 | 1 | 2349 ms | - |
-| `S05_error` | `error` | `error` | ✅ | 2 | 0 | 18482 ms | retry attempt 1: tool result was unsatisfactory or route is error, retry attempt 2: tool result was unsatisfactory or route is error |
-| `S06_delete` | `risky` | `risky` | ✅ | 0 | 1 | 2299 ms | - |
-| `S07_dead_letter` | `error` | `error` | ✅ | 1 | 0 | 2808 ms | retry attempt 1: tool result was unsatisfactory or route is error |
-| `S08_complex_tool` | `tool` | `tool` | ✅ | 0 | 0 | 5423 ms | - |
-| `S09_complex_risky` | `risky` | `risky` | ✅ | 0 | 1 | 3340 ms | - |
-| `S10_complex_missing` | `risky` | `risky` | ✅ | 0 | 1 | 7868 ms | - |
-| `S11_complex_retry` | `error` | `error` | ✅ | 2 | 0 | 3331 ms | retry attempt 1: tool result was unsatisfactory or route is error, retry attempt 2: tool result was unsatisfactory or route is error |
-| `S12_policy_simple` | `simple` | `simple` | ✅ | 0 | 0 | 2895 ms | - |
-| `S13_escalation_risky` | `risky` | `risky` | ✅ | 0 | 1 | 2606 ms | - |
-| `S14_missing_order` | `tool` | `tool` | ✅ | 0 | 0 | 3718 ms | - |
-| `S15_dead_letter_hard` | `error` | `error` | ✅ | 1 | 0 | 40688 ms | retry attempt 1: tool result was unsatisfactory or route is error |
+| `S01_simple` | `simple` | `simple` | ✅ | 0 | 0 | 43846 ms | - |
+| `S02_tool` | `tool` | `tool` | ✅ | 0 | 0 | 1791 ms | - |
+| `S03_missing` | `missing_info` | `missing_info` | ✅ | 0 | 0 | 742 ms | - |
+| `S04_risky` | `risky` | `risky` | ✅ | 0 | 1 | 4595 ms | - |
+| `S05_error` | `error` | `error` | ✅ | 2 | 0 | 2175 ms | retry attempt 1: tool result was unsatisfactory or route is error, retry attempt 2: tool result was unsatisfactory or route is error |
+| `S06_delete` | `risky` | `risky` | ✅ | 0 | 1 | 1876 ms | - |
+| `S07_dead_letter` | `error` | `error` | ✅ | 1 | 0 | 655 ms | retry attempt 1: tool result was unsatisfactory or route is error |
+| `S08_complex_tool` | `tool` | `tool` | ✅ | 0 | 0 | 1918 ms | - |
+| `S09_complex_risky` | `risky` | `risky` | ✅ | 0 | 1 | 2172 ms | - |
+| `S10_complex_missing` | `risky` | `risky` | ✅ | 0 | 1 | 2206 ms | - |
+| `S11_complex_retry` | `error` | `error` | ✅ | 2 | 0 | 3302 ms | retry attempt 1: tool result was unsatisfactory or route is error, retry attempt 2: tool result was unsatisfactory or route is error |
+| `S12_policy_simple` | `simple` | `simple` | ✅ | 0 | 0 | 2407 ms | - |
+| `S13_escalation_risky` | `risky` | `risky` | ✅ | 0 | 1 | 1851 ms | - |
+| `S14_missing_order` | `tool` | `tool` | ✅ | 0 | 0 | 2030 ms | - |
+| `S15_dead_letter_hard` | `error` | `error` | ✅ | 1 | 0 | 690 ms | retry attempt 1: tool result was unsatisfactory or route is error |
+| `S16_gq_refund_days` | `simple` | `simple` | ✅ | 0 | 0 | 2233 ms | - |
+| `S17_gq_refund_exclusion` | `simple` | `simple` | ✅ | 0 | 0 | 2366 ms | - |
+| `S18_gq_refund_processing` | `risky` | `risky` | ✅ | 0 | 1 | 1779 ms | - |
+| `S19_gq_sla_p1_response` | `simple` | `simple` | ✅ | 0 | 0 | 2158 ms | - |
+| `S20_gq_sla_p1_resolution` | `simple` | `simple` | ✅ | 0 | 0 | 1578 ms | - |
+| `S21_gq_sla_escalate` | `simple` | `simple` | ✅ | 0 | 0 | 1687 ms | - |
+| `S22_gq_account_lock` | `simple` | `simple` | ✅ | 0 | 0 | 2172 ms | - |
+| `S23_gq_vpn_devices` | `simple` | `simple` | ✅ | 0 | 0 | 2421 ms | - |
+| `S24_gq_hr_leave` | `simple` | `simple` | ✅ | 0 | 0 | 1810 ms | - |
+| `S25_gq_admin_access` | `missing_info` | `missing_info` | ✅ | 0 | 0 | 727 ms | - |
 
 ---
 
@@ -199,11 +209,11 @@ If given one more day, the highest-priority productionisation item would be:
 
 ```json
 {
-  "total_scenarios": 15,
+  "total_scenarios": 25,
   "success_rate": 1.0,
-  "avg_nodes_visited": 6.666666666666667,
+  "avg_nodes_visited": 6.08,
   "total_retries": 6,
-  "total_interrupts": 5,
+  "total_interrupts": 6,
   "resume_success": true,
   "scenario_metrics": [
     {
@@ -216,7 +226,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 55128,
+      "latency_ms": 43846,
       "errors": []
     },
     {
@@ -229,7 +239,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 6460,
+      "latency_ms": 1791,
       "errors": []
     },
     {
@@ -242,7 +252,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 3090,
+      "latency_ms": 742,
       "errors": []
     },
     {
@@ -255,7 +265,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 1,
       "approval_required": true,
       "approval_observed": true,
-      "latency_ms": 2349,
+      "latency_ms": 4595,
       "errors": []
     },
     {
@@ -263,12 +273,12 @@ If given one more day, the highest-priority productionisation item would be:
       "success": true,
       "expected_route": "error",
       "actual_route": "error",
-      "nodes_visited": 10,
+      "nodes_visited": 12,
       "retry_count": 2,
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 18482,
+      "latency_ms": 2175,
       "errors": [
         "retry attempt 1: tool result was unsatisfactory or route is error",
         "retry attempt 2: tool result was unsatisfactory or route is error"
@@ -284,7 +294,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 1,
       "approval_required": true,
       "approval_observed": true,
-      "latency_ms": 2299,
+      "latency_ms": 1876,
       "errors": []
     },
     {
@@ -292,12 +302,12 @@ If given one more day, the highest-priority productionisation item would be:
       "success": true,
       "expected_route": "error",
       "actual_route": "error",
-      "nodes_visited": 5,
+      "nodes_visited": 7,
       "retry_count": 1,
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 2808,
+      "latency_ms": 655,
       "errors": [
         "retry attempt 1: tool result was unsatisfactory or route is error"
       ]
@@ -312,7 +322,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 5423,
+      "latency_ms": 1918,
       "errors": []
     },
     {
@@ -325,7 +335,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 1,
       "approval_required": true,
       "approval_observed": true,
-      "latency_ms": 3340,
+      "latency_ms": 2172,
       "errors": []
     },
     {
@@ -338,7 +348,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 1,
       "approval_required": true,
       "approval_observed": true,
-      "latency_ms": 7868,
+      "latency_ms": 2206,
       "errors": []
     },
     {
@@ -346,12 +356,12 @@ If given one more day, the highest-priority productionisation item would be:
       "success": true,
       "expected_route": "error",
       "actual_route": "error",
-      "nodes_visited": 10,
+      "nodes_visited": 12,
       "retry_count": 2,
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 3331,
+      "latency_ms": 3302,
       "errors": [
         "retry attempt 1: tool result was unsatisfactory or route is error",
         "retry attempt 2: tool result was unsatisfactory or route is error"
@@ -367,7 +377,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 2895,
+      "latency_ms": 2407,
       "errors": []
     },
     {
@@ -380,7 +390,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 1,
       "approval_required": true,
       "approval_observed": true,
-      "latency_ms": 2606,
+      "latency_ms": 1851,
       "errors": []
     },
     {
@@ -393,7 +403,7 @@ If given one more day, the highest-priority productionisation item would be:
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 3718,
+      "latency_ms": 2030,
       "errors": []
     },
     {
@@ -401,15 +411,145 @@ If given one more day, the highest-priority productionisation item would be:
       "success": true,
       "expected_route": "error",
       "actual_route": "error",
-      "nodes_visited": 5,
+      "nodes_visited": 7,
       "retry_count": 1,
       "interrupt_count": 0,
       "approval_required": false,
       "approval_observed": false,
-      "latency_ms": 40688,
+      "latency_ms": 690,
       "errors": [
         "retry attempt 1: tool result was unsatisfactory or route is error"
       ]
+    },
+    {
+      "scenario_id": "S16_gq_refund_days",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 2233,
+      "errors": []
+    },
+    {
+      "scenario_id": "S17_gq_refund_exclusion",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 2366,
+      "errors": []
+    },
+    {
+      "scenario_id": "S18_gq_refund_processing",
+      "success": true,
+      "expected_route": "risky",
+      "actual_route": "risky",
+      "nodes_visited": 8,
+      "retry_count": 0,
+      "interrupt_count": 1,
+      "approval_required": true,
+      "approval_observed": true,
+      "latency_ms": 1779,
+      "errors": []
+    },
+    {
+      "scenario_id": "S19_gq_sla_p1_response",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 2158,
+      "errors": []
+    },
+    {
+      "scenario_id": "S20_gq_sla_p1_resolution",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 1578,
+      "errors": []
+    },
+    {
+      "scenario_id": "S21_gq_sla_escalate",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 1687,
+      "errors": []
+    },
+    {
+      "scenario_id": "S22_gq_account_lock",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 2172,
+      "errors": []
+    },
+    {
+      "scenario_id": "S23_gq_vpn_devices",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 2421,
+      "errors": []
+    },
+    {
+      "scenario_id": "S24_gq_hr_leave",
+      "success": true,
+      "expected_route": "simple",
+      "actual_route": "simple",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 1810,
+      "errors": []
+    },
+    {
+      "scenario_id": "S25_gq_admin_access",
+      "success": true,
+      "expected_route": "missing_info",
+      "actual_route": "missing_info",
+      "nodes_visited": 4,
+      "retry_count": 0,
+      "interrupt_count": 0,
+      "approval_required": false,
+      "approval_observed": false,
+      "latency_ms": 727,
+      "errors": []
     }
   ]
 }

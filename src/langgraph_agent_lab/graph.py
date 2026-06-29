@@ -27,7 +27,7 @@ def build_graph(checkpointer: Any | None = None):
       risky        → risky_action → approval → [conditional: route_after_approval]
                                                   approved → tool → evaluate → ...
                                                   rejected → clarify → finalize → END
-      error        → retry → [conditional: route_after_retry] → tool or dead_letter
+      error        → tool (fails internally) → evaluate → retry loop → tool or dead_letter
     """
     from langgraph.graph import END, START, StateGraph
 

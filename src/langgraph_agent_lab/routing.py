@@ -17,7 +17,8 @@ def route_after_classify(state: AgentState) -> str:
     - "tool"         → "tool"
     - "missing_info" → "clarify"
     - "risky"        → "risky_action"
-    - "error"        → "retry"  (retry node increments attempt, then routes to tool)
+    - "error"        → "tool"   (tool itself simulates the transient failure;
+                                 evaluate→retry loop handles bounded back-off)
     - unknown/default → "answer"
     """
     mapping = {
@@ -25,7 +26,7 @@ def route_after_classify(state: AgentState) -> str:
         "tool": "tool",
         "missing_info": "clarify",
         "risky": "risky_action",
-        "error": "retry",
+        "error": "tool",
     }
     return mapping.get(state.get("route", ""), "answer")
 

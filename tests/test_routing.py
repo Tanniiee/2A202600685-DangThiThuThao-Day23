@@ -32,7 +32,9 @@ def test_route_after_classify_missing():
 
 
 def test_route_after_classify_error():
-    assert route_after_classify({"route": Route.ERROR.value}) == "retry"
+    # error route now goes to tool first; tool_node simulates the transient failure
+    # internally so the retry loop is triggered via evaluate→retry, not classify→retry
+    assert route_after_classify({"route": Route.ERROR.value}) == "tool"
 
 
 def test_route_after_classify_unknown_defaults():
