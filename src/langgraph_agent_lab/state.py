@@ -1,15 +1,18 @@
-"""State schema for the Day 08 LangGraph lab.
-
-Students should extend the schema only when needed. Keep state lean and serializable.
-"""
+"""State schema for the Day 08 LangGraph lab."""
 
 from __future__ import annotations
 
-from enum import StrEnum
+import sys
 from typing import Annotated, Any, TypedDict
-
 from operator import add
 from pydantic import BaseModel, Field, field_validator
+
+if sys.version_info >= (3, 11):
+    from enum import StrEnum
+else:
+    from enum import Enum
+    class StrEnum(str, Enum):
+        pass
 
 
 class Route(StrEnum):
@@ -23,8 +26,6 @@ class Route(StrEnum):
 
 
 class LabEvent(BaseModel):
-    """Append-only audit event for grading and debugging."""
-
     node: str
     event_type: str
     message: str
@@ -39,12 +40,6 @@ class ApprovalDecision(BaseModel):
 
 
 class AgentState(TypedDict, total=False):
-    """LangGraph state.
-
-    TODO(student): decide which fields should be append-only and which should be overwritten.
-    The current annotations give a safe starting point for auditability.
-    """
-
     thread_id: str
     scenario_id: str
     query: str
@@ -52,14 +47,15 @@ class AgentState(TypedDict, total=False):
     risk_level: str
     attempt: int
     max_attempts: int
-    final_answer: str | None
-    # TODO(student): you will need additional fields for clarification, risky actions,
-    # approval decisions, and retry-loop gating. Add them as you implement nodes.
-    # Hint: check what your nodes return and what your routing functions read.
-    messages: Annotated[list[str], add]
-    tool_results: Annotated[list[str], add]
-    errors: Annotated[list[str], add]
-    events: Annotated[list[dict[str, Any]], add]
+    final_answer: str
+    evaluation_result: str
+    pending_question: str
+    proposed_action: str
+    approval: dict
+    messages: Annotated[list, add]
+    tool_results: Annotated[list, add]
+    errors: Annotated[list, add]
+    events: Annotated[list, add]
 
 
 class Scenario(BaseModel):
@@ -80,7 +76,6 @@ class Scenario(BaseModel):
 
 
 def initial_state(scenario: Scenario) -> AgentState:
-    """Create a serializable initial state for one scenario."""
     return {
         "thread_id": f"thread-{scenario.id}",
         "scenario_id": scenario.id,
@@ -97,6 +92,10 @@ def initial_state(scenario: Scenario) -> AgentState:
     }
 
 
-def make_event(node: str, event_type: str, message: str, **metadata: Any) -> dict[str, Any]:
-    """Create a normalized event payload."""
-    return LabEvent(node=node, event_type=event_type, message=message, metadata=metadata).model_dump()
+def make_event(node: str, event_type: str, message: str, metadata: dict = None) -> dict:
+    return LabEvent(
+        node=node,
+        event_type=event_type,
+        message=message,
+        metadata=metadata or {},
+    ).model_dump()
